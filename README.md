@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brain &amp; Mind Academy • USCC 8 - Practice 2 Test</title>
+
+  <!-- MathJax v3 Configuration & Loader -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    :root {
+      --navy-dark: #0c4a6e;
+      --brand-blue: #0284c7;
+      --accent-cyan: #0ea5e9;
+      --bg-tint: #f0f9ff;
+      --card-surf: #ffffff;
+      --border-accent: #7dd3fc;
+      --border-soft: #bae6fd;
+      --green-ok: #059669;
+      --green-surf: #d1fae5;
+      --red-fail: #dc2626;
+      --red-surf: #fee2e2;
+      --brand-gold: #f59e0b;
+      --gold-dark: #d97706;
+      --gold-surf: #fef3c7;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-tint);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(12, 74, 110, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      background: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .brand-title h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title p {
+      font-size: 0.78rem;
+      color: var(--accent-cyan);
+      font-weight: 500;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--border-accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip strong {
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: 1px solid var(--border-accent);
+      color: #fff;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      outline: none;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    nav button.active {
+      background: var(--bg-tint);
+      color: var(--brand-blue);
+      border-bottom: 3px solid var(--brand-blue);
+    }
+
+    main {
+      flex: 1;
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    #loginGateView {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(12, 74, 110, 0.9);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 36px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.3);
+    }
+
+    .login-box h2 {
+      font-size: 1.45rem;
+      color: var(--navy-dark);
+      margin-bottom: 6px;
+    }
+
+    .login-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--brand-blue);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-dark);
+    }
+
+    .theory-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .theory-card h3 {
+      color: var(--navy-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.25rem;
+    }
+
+    .theory-intro-text {
+      color: var(--text-main);
+      line-height: 1.65;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .compendium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+      margin: 16px 0;
+    }
+
+    .comp-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(12, 74, 110, 0.04);
+    }
+
+    .comp-card h4 {
+      color: var(--navy-dark);
+      border-bottom: 2px solid var(--border-soft);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .derivation-body {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-main);
+    }
+
+    .ratios-highlight-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--brand-blue);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      margin-top: 10px;
+    }
+
+    .table-container {
+      margin: 16px 0;
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
+    }
+
+    .stat-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    .stat-table th, .stat-table td {
+      border: 1px solid var(--border-soft);
+      padding: 10px 14px;
+    }
+
+    .stat-table th {
+      background: var(--bg-tint);
+      color: var(--navy-dark);
+      font-weight: 700;
+    }
+
+    .stat-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 24px;
+    }
+
+    @media (max-width: 990px) {
+      .sheet-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .concept-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .concept-tag.comp {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #7dd3fc;
+    }
+
+    .concept-tag.order {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .concept-tag.real {
+      background: #d1fae5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+    }
+
+    .svg-container {
+      display: flex;
+      justify-content: center;
+      margin: 18px 0;
+      padding: 16px;
+      background: var(--bg-tint);
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      overflow-x: auto;
+    }
+
+    .step-box {
+      margin-top: 16px;
+      padding: 18px;
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      background: #fff;
+      display: none;
+    }
+
+    .step-box.unlocked {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-box.success {
+      border-color: var(--green-ok);
+      background: var(--green-surf);
+    }
+
+    .step-text-wrap {
+      font-size: 1rem;
+      line-height: 1.8;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .inline-blank {
+      width: 140px;
+      padding: 6px 10px;
+      font-size: 0.95rem;
+      border: 2px dashed var(--brand-blue);
+      border-radius: 6px;
+      outline: none;
+      background: #fff;
+      color: var(--navy-dark);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .inline-blank:focus {
+      border-style: solid;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(14,165,233,0.2);
+    }
+
+    .inline-blank:disabled {
+      border: 1px solid var(--green-ok);
+      background: #fff;
+      color: var(--green-ok);
+      cursor: not-allowed;
+    }
+
+    .btn-verify {
+      background: var(--accent-cyan);
+      color: #fff;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-verify:hover {
+      background: var(--brand-blue);
+    }
+
+    .btn-reveal {
+      background: var(--brand-gold);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-left: 6px;
+    }
+
+    .btn-reveal:hover {
+      background: var(--gold-dark);
+    }
+
+    .attempts-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #64748b;
+      margin-left: 6px;
+    }
+
+    .nav-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .nav-btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-nav-action {
+      background: #f8fafc;
+      border: 1px solid var(--border-accent);
+      color: var(--navy-dark);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-nav-action:hover:not(:disabled) {
+      background: var(--bg-tint);
+      border-color: var(--brand-blue);
+    }
+
+    .btn-nav-action:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-skip {
+      border-color: var(--brand-gold);
+      color: var(--gold-dark);
+      background: var(--gold-surf);
+    }
+
+    .btn-skip:hover {
+      background: #fde68a;
+    }
+
+    .palette-box {
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .palette-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      margin: 8px 0 12px 0;
+      padding: 6px 8px;
+      background: var(--bg-tint);
+      border-radius: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .palette-section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 12px 0 6px 0;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .palette-btn {
+      aspect-ratio: 1;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-tint);
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      font-size: 0.82rem;
+      color: var(--navy-dark);
+    }
+
+    .palette-btn.active {
+      border: 2px solid var(--navy-dark) !important;
+      background: var(--border-accent);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .palette-btn.completed {
+      background: var(--green-ok) !important;
+      color: #fff !important;
+      border-color: var(--green-ok) !important;
+    }
+
+    .palette-btn.skipped {
+      background: var(--brand-gold) !important;
+      color: #fff !important;
+      border-color: var(--gold-dark) !important;
+    }
+
+    .tool-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 12px;
+    }
+
+    .tool-tabs button {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .tool-tabs button.active {
+      color: var(--brand-blue);
+      border-bottom: 2px solid var(--brand-blue);
+    }
+
+    .keypad-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .keypad-btn {
+      padding: 8px 4px;
+      border: 1px solid var(--border-soft);
+      background: #fff;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .keypad-btn:hover {
+      background: var(--bg-tint);
+    }
+
+    #calcDisplay {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--border-soft);
+      border-radius: 4px;
+      font-size: 1rem;
+      text-align: right;
+      margin-bottom: 8px;
+      background: #f8fafc;
+    }
+
+    .hero-score-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    }
+
+    .student-badge {
+      display: inline-block;
+      background: var(--bg-tint);
+      border: 1px solid var(--border-accent);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      color: var(--navy-dark);
+    }
+
+    .student-badge strong {
+      color: var(--brand-blue);
+    }
+
+    .score-badge {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+      margin: 8px 0;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+
+    @media print {
+      header, nav, .palette-box, #toolsPanel, .btn-primary, .btn-verify, #loginGateView, .nav-toolbar {
+        display: none !important;
+      }
+      body { background: #fff; }
+      main { width: 100%; max-width: 100%; padding: 0; }
+      .sheet-grid { display: block; }
+      .view { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand Header -->
+  <header>
+    <div class="brand-wrap">
+      <div class="logo-badge">
+        <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
+          <path d="M 20 30 Q 50 10 80 30" stroke="#f59e0b" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 26 40 Q 50 22 74 40" stroke="#f59e0b" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 32 50 Q 50 36 68 50" stroke="#f59e0b" stroke-width="7" stroke-linecap="round"/>
+          <path d="M 18 80 Q 50 68 50 82 Q 50 68 82 80 L 82 52 Q 50 42 50 56 Q 50 42 18 52 Z" fill="#ffffff" stroke="#334155" stroke-width="7" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-title">
+        <h1>Brain &amp; Mind Academy</h1>
+        <p>B&amp;M – The Experts • USCC 8 (Practice 2: Understanding the Real Number System)</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="chip" id="timerChip">⏱️ 00:00</div>
+      <div class="chip" id="userPill"><strong>Student: Guest</strong></div>
+      <button class="btn-icon" id="audioToggleBtn" title="Toggle Audio">🔊</button>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <button class="tab-btn active" onclick="switchView('theoryView')">📖 Theory &amp; Strategy Guide</button>
+    <button class="tab-btn" onclick="switchView('sheetView')">✍️ Interactive Practice Test</button>
+    <button class="tab-btn" onclick="switchView('solutionsView')">📋 Test Results &amp; Solutions</button>
+  </nav>
+
+  <!-- Login Gate Modal -->
+  <div id="loginGateView">
+    <div class="login-box">
+      <h2>USCC 8 Portal</h2>
+      <p>Grade 8 Mathematics — Chapter 1 Practice 2 Test</p>
+      <input type="text" id="studentNameInput" placeholder="Enter Student Name" />
+      <input type="password" id="passInput" placeholder="Passcode (Optional)" />
+      <button class="btn-primary" onclick="initDirectLogin()">Initialize Workspace</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- View 1: Theory & Strategy Guide -->
+    <div id="theoryView" class="view active">
+      <div class="theory-card">
+        <h3>📐 Theory Compendium: Real Numbers &amp; Decimal Comparisons</h3>
+        <p class="theory-intro-text">
+          Real numbers consist of rational numbers (terminating or repeating decimals) and irrational numbers (non-terminating, non-repeating decimals). We evaluate, compare, and order real numbers by converting them to decimal equivalents or comparing their squared values.
+        </p>
+
+        <div class="compendium-grid">
+          <!-- 1. Comparing Radicals and Reals -->
+          <div class="comp-card">
+            <h4>1. Comparison Rules</h4>
+            <div class="derivation-body">
+              <p><strong>Positive Numbers:</strong> If \(a > b > 0\), then \(\sqrt{a} > \sqrt{b}\). For example, \(67 < 68 \implies \sqrt{67} < \sqrt{68}\).</p>
+              <p><strong>Negative Reals:</strong> On the negative number line, the number with the larger absolute value is smaller: \(-a < -b\) if \(a > b\). For example, since \(\sqrt{149} \approx 12.21 > 11.47\), it follows that \(-11.47 > -\sqrt{149}\).</p>
+            </div>
+          </div>
+
+          <!-- 2. Rational vs. Irrational -->
+          <div class="comp-card">
+            <h4>2. Number Classification</h4>
+            <div class="derivation-body">
+              <p><strong>Rational Numbers:</strong> Fractions \(\frac{a}{b}\), integers, mixed numbers (e.g., \(-4\frac{5}{12}\), \(-\frac{31}{6}\)), and terminating decimals (\(1.34\)).</p>
+              <p><strong>Irrational Numbers:</strong> Square roots of non-perfect squares (\(\sqrt{37}, \sqrt{145}\)) and powers of transcendental constants (\(-\pi^3, -\pi^2\)).</p>
+            </div>
+          </div>
+
+          <!-- 3. Absolute Values -->
+          <div class="comp-card">
+            <h4>3. Absolute Values</h4>
+            <div class="derivation-body">
+              <p>The absolute value \(|x|\) denotes distance from zero on the real number line:</p>
+              \[|x| = x \text{ if } x \ge 0, \quad |x| = -x \text{ if } x < 0\]
+              <p>Example: \(|-1.\overline{345}| = 1.\overline{345} \approx 1.345\).</p>
+            </div>
+          </div>
+
+          <!-- 4. Real-World Radical Speeds -->
+          <div class="comp-card">
+            <h4>4. Practical Radical Applications</h4>
+            <div class="derivation-body">
+              <p>When physical formulas produce radical quantities like speed \(v = \sqrt{\frac{64}{5}}\text{ m/s}\):</p>
+              \[\sqrt{\frac{64}{5}} = \frac{8}{\sqrt{5}} = \frac{8\sqrt{5}}{5} \approx 3.58\text{ m/s}\]
+              <p>Comparing with \(4\text{ m/s}\): \(4 = \sqrt{16} = \sqrt{\frac{80}{5}} > \sqrt{\frac{64}{5}}\).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View 2: Interactive Practice Sheet -->
+    <div id="sheetView" class="view">
+      <div class="sheet-grid">
+        <div class="question-card" id="activeQuestionCard"></div>
+
+        <aside>
+          <div class="palette-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h4>Test Questions Palette</h4>
+              <span style="font-size:0.8rem; color:var(--text-muted);" id="paletteCount">0 / 13</span>
+            </div>
+
+            <div class="palette-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#059669;"></span> Done</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Skipped</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#7dd3fc;"></span> Active</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#f0f9ff; border:1px solid #bae6fd;"></span> Unseen</div>
+            </div>
+            
+            <div class="palette-section-title">Page 3 Questions (Q1 – Q7)</div>
+            <div class="palette-grid" id="paletteSecAGrid"></div>
+
+            <div class="palette-section-title">Page 4 Questions (Q8 – Q13)</div>
+            <div class="palette-grid" id="paletteSecBGrid"></div>
+          </div>
+
+          <div class="palette-box" id="toolsPanel">
+            <div class="tool-tabs">
+              <button id="tabKeypadBtn" class="active" onclick="toggleTool('keypad')">Math Keypad</button>
+              <button id="tabCalcBtn" onclick="toggleTool('calc')">Calculator</button>
+            </div>
+
+            <div id="toolKeypad">
+              <div class="keypad-grid">
+                <button class="keypad-btn" onclick="insertSymbol('<')">&lt;</button>
+                <button class="keypad-btn" onclick="insertSymbol('>')">&gt;</button>
+                <button class="keypad-btn" onclick="insertSymbol('√')">√</button>
+                <button class="keypad-btn" onclick="insertSymbol('π')">π</button>
+                <button class="keypad-btn" onclick="insertSymbol('/')">/</button>
+                <button class="keypad-btn" onclick="insertSymbol('-')">-</button>
+                <button class="keypad-btn" onclick="insertSymbol('.')">.</button>
+                <button class="keypad-btn" onclick="insertSymbol(',')">,</button>
+                <button class="keypad-btn" onclick="insertSymbol('Rational')">Rational</button>
+                <button class="keypad-btn" onclick="insertSymbol('Irrational')">Irrational</button>
+                <button class="keypad-btn" onclick="insertSymbol('greater than')">greater than</button>
+                <button class="keypad-btn" onclick="insertSymbol('less than')">less than</button>
+              </div>
+            </div>
+
+            <div id="toolCalc" style="display: none;">
+              <input type="text" id="calcDisplay" readonly value="" />
+              <div class="keypad-grid">
+                <button class="keypad-btn" onclick="pressCalc('7')">7</button>
+                <button class="keypad-btn" onclick="pressCalc('8')">8</button>
+                <button class="keypad-btn" onclick="pressCalc('9')">9</button>
+                <button class="keypad-btn" onclick="pressCalc('/')">/</button>
+                <button class="keypad-btn" onclick="pressCalc('4')">4</button>
+                <button class="keypad-btn" onclick="pressCalc('5')">5</button>
+                <button class="keypad-btn" onclick="pressCalc('6')">6</button>
+                <button class="keypad-btn" onclick="pressCalc('*')">*</button>
+                <button class="keypad-btn" onclick="pressCalc('1')">1</button>
+                <button class="keypad-btn" onclick="pressCalc('2')">2</button>
+                <button class="keypad-btn" onclick="pressCalc('3')">3</button>
+                <button class="keypad-btn" onclick="pressCalc('-')">-</button>
+                <button class="keypad-btn" onclick="pressCalc('0')">0</button>
+                <button class="keypad-btn" onclick="pressCalc('.')">.</button>
+                <button class="keypad-btn" onclick="calcEval()">=</button>
+                <button class="keypad-btn" onclick="pressCalc('+')">+</button>
+                <button class="keypad-btn" style="grid-column: span 2;" onclick="calcClear()">C</button>
+                <button class="keypad-btn" style="grid-column: span 2;" onclick="calcSqrt()">√</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- View 3: Complete Solutions & Final Results -->
+    <div id="solutionsView" class="view">
+      <div class="hero-score-card">
+        <h2>Practice 2 Examination Report</h2>
+        <div class="student-badge" id="reportStudentBadge"><strong>Student: Guest</strong></div>
+        <div class="score-badge" id="scoreValue">0 / 13</div>
+        <p id="scoreSubtitle">Complete active questions to review your diagnostic analysis.</p>
+        <button class="btn-primary" style="margin-top: 14px; max-width: 220px;" onclick="window.print()">🖨️ Print Test Results</button>
+      </div>
+      <div id="completeSolutionsContainer"></div>
+    </div>
+  </main>
+
+  <div class="toast" id="toastMessage"></div>
+
+  <script>
+    function renderTable(headers, rows) {
+      let ths = headers.map(h => `<th>${h}</th>`).join('');
+      let trs = rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('');
+      return `<div class="table-container"><table class="stat-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
+    }
+
+    const CHAPTER_QUESTIONS = [
+      // ========== PAGE 3 (Q1 - Q7) ==========
+      {
+        id: 1,
+        concept: "comp",
+        source: "Practice 2, Q1",
+        title: "Comparison: √67 vs √68",
+        prompt: "Compare the pair of real numbers using either < or >: \\(\\sqrt{67}\\) [ ? ] \\(\\sqrt{68}\\).",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="35" y="35" font-size="10" fill="#0c4a6e">67 < 68</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Since 67 < 68, enter the comparison symbol (< or >):", expected: "<", suffix: ".", explanation: "\\[67 < 68 \\implies \\sqrt{67} < \\sqrt{68}\\]" }
+        ]
+      },
+      {
+        id: 2,
+        concept: "comp",
+        source: "Practice 2, Q2",
+        title: "Comparison: -11.47 vs -√149",
+        prompt: "Compare the pair of real numbers using either < or >: \\(-11.47\\) [ ? ] \\(-\\sqrt{149}\\).",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="25" y="35" font-size="9" fill="#0c4a6e">-11.47 vs -12.2065...</text></svg>`,
+        steps: [
+          { prefix: "Step 1: \\(\\sqrt{149} \\approx 12.21\\). Comparing negatives: -11.47 is to the right of -12.21. Enter symbol (< or >):", expected: ">", suffix: ".", explanation: "\\[-11.47 > -\\sqrt{149} \\quad (\\text{since } -11.47 > -12.2065...)\\]" }
+        ]
+      },
+      {
+        id: 3,
+        concept: "comp",
+        source: "Practice 2, Q3",
+        title: "Comparison: 15.489 vs √240",
+        prompt: "Compare the pair of real numbers using either < or >: \\(15.489\\) [ ? ] \\(\\sqrt{240}\\).",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="25" y="35" font-size="9" fill="#0c4a6e">15.489² ≈ 239.909 vs 240</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Squaring: \\(15.489^2 \\approx 239.909\\) while \\((\\sqrt{240})^2 = 240\\). Enter symbol (< or >):", expected: "<", suffix: ".", explanation: "\\[15.489 < \\sqrt{240} \\quad (\\text{since } \\sqrt{240} \\approx 15.4919)\\]" }
+        ]
+      },
+      {
+        id: 4,
+        concept: "comp",
+        source: "Practice 2, Q4",
+        title: "Comparison: 4.625 vs 467/111",
+        prompt: "Compare the pair of real numbers using either < or >: \\(4.625\\) [ ? ] \\(\\frac{467}{111}\\).",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="30" y="35" font-size="9" fill="#0c4a6e">467 / 111 ≈ 4.2072...</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Decimal value of \\(\\frac{467}{111} \\approx 4.207\\). Enter symbol (< or >):", expected: ">", suffix: ".", explanation: "\\[4.625 > \\frac{467}{111} \\quad (4.625 > 4.2072...)\\]" }
+        ]
+      },
+      {
+        id: 5,
+        concept: "real",
+        source: "Practice 2, Q5",
+        title: "Absolute Values of Irrationals to 3 Decimal Places",
+        prompt: "Use the numbers: \\(\\sqrt{62}, \\sqrt{99}, \\pi, -1.\\overline{345}\\). Determine the absolute value of each number to 3 decimal places.",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="20" y="35" font-size="8" fill="#0c4a6e">|√62|, |√99|, |π|, |-1.345...|</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Absolute value \\(|\\sqrt{62}| \\approx\\)", expected: "7.874", suffix: ".", explanation: "\\[|\\sqrt{62}| \\approx 7.874\\]" },
+          { prefix: "Step 2: Absolute value \\(|\\sqrt{99}| \\approx\\)", expected: "9.950", suffix: ".", explanation: "\\[|\\sqrt{99}| \\approx 9.950\\]" },
+          { prefix: "Step 3: Absolute value \\(|\\pi| \\approx\\)", expected: "3.142", suffix: ".", explanation: "\\[|\\pi| \\approx 3.142\\]" },
+          { prefix: "Step 4: Absolute value \\(|-1.\\overline{345}| =\\)", expected: "1.345", suffix: ".", explanation: "\\[|-1.\\overline{345}| = 1.\\overline{345} \\approx 1.345\\]" }
+        ]
+      },
+      {
+        id: 6,
+        concept: "real",
+        source: "Practice 2, Q6",
+        title: "Graph and Number Line Bounds",
+        prompt: "Locate \\(\\sqrt{62}, \\sqrt{99}, \\pi, -1.\\overline{345}\\) on a real number line. State the consecutive integer bounds.",
+        svg: `<svg width="240" height="80" viewBox="0 0 200 60">
+          <line x1="10" y1="30" x2="190" y2="30" stroke="#0c4a6e" stroke-width="2"/>
+          <circle cx="35" cy="30" r="3" fill="#dc2626"/><text x="25" y="45" font-size="7">-1.345</text>
+          <circle cx="80" cy="30" r="3" fill="#0284c7"/><text x="75" y="45" font-size="7">π</text>
+          <circle cx="125" cy="30" r="3" fill="#059669"/><text x="120" y="45" font-size="7">√62</text>
+          <circle cx="165" cy="30" r="3" fill="#d97706"/><text x="160" y="45" font-size="7">√99</text>
+        </svg>`,
+        steps: [
+          { prefix: "Step 1: \\(\\sqrt{62}\\) (\\(\\approx 7.874\\)) lies between integers 7 and", expected: "8", suffix: ".", explanation: "\\[7 < \\sqrt{62} < 8\\]" },
+          { prefix: "Step 2: \\(\\sqrt{99}\\) (\\(\\approx 9.950\\)) lies between integers 9 and", expected: "10", suffix: ".", explanation: "\\[9 < \\sqrt{99} < 10\\]" }
+        ]
+      },
+      {
+        id: 7,
+        concept: "order",
+        source: "Practice 2, Q7",
+        title: "Order Irrationals from Greatest to Least",
+        prompt: "Order \\(\\sqrt{62}, \\sqrt{99}, \\pi, -1.\\overline{345}\\) from greatest to least using >.",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="10" y="35" font-size="8" fill="#0c4a6e">9.950 > 7.874 > 3.142 > -1.345</text></svg>`,
+        steps: [
+          { prefix: "Step 1: The greatest number among the four is", expected: "√99", suffix: ".", explanation: "\\[\\sqrt{99} \\approx 9.950\\]" },
+          { prefix: "Step 2: The least number among the four is", expected: "-1.345", suffix: ".", explanation: "\\[-1.\\overline{345} \\approx -1.345\\]" }
+        ]
+      },
+
+      // ========== PAGE 4 (Q8 - Q13) ==========
+      {
+        id: 8,
+        concept: "real",
+        source: "Practice 2, Q8",
+        title: "Classification Table: Numbers in Q8",
+        prompt: "Use the real numbers: \\(1.34, \\sqrt{37}, -4\\frac{5}{12}, -\\frac{31}{6}, -\\pi^3\\). Complete the classification table.",
+        table: renderTable(
+          ["Category", "Real Numbers"],
+          [
+            ["Rational Numbers", "\\(1.34, -4\\frac{5}{12}, -\\frac{31}{6}\\)"],
+            ["Irrational Numbers", "\\(\\sqrt{37}, -\\pi^3\\)"]
+          ]
+        ),
+        svg: `<svg width="220" height="80" viewBox="0 0 160 50"><text x="25" y="30" font-size="9" fill="#0c4a6e">Rational vs. Irrational</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Is \\(\\sqrt{37}\\) rational or irrational?", expected: "irrational", suffix: ".", explanation: "37 is not a perfect square, so \\(\\sqrt{37}\\) is irrational." },
+          { prefix: "Step 2: Is \\(-4\\frac{5}{12}\\) rational or irrational?", expected: "rational", suffix: ".", explanation: "Mixed numbers represent ratios of integers and are rational." },
+          { prefix: "Step 3: Is \\(-\\pi^3\\) rational or irrational?", expected: "irrational", suffix: ".", explanation: "Powers of \\(\\pi\\) are irrational." }
+        ]
+      },
+      {
+        id: 9,
+        concept: "order",
+        source: "Practice 2, Q9",
+        title: "Order from Least to Greatest using <",
+        prompt: "Order \\(1.34, \\sqrt{37}, -4\\frac{5}{12}, -\\frac{31}{6}, -\\pi^3\\) from least to greatest using <.",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="15" y="35" font-size="7" fill="#0c4a6e">-31.01 < -5.17 < -4.42 < 1.34 < 6.08</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Identify the smallest (most negative) number: \\(-\\pi^3 \\approx -31.01\\). Enter smallest number:", expected: "-π^3", suffix: ".", explanation: "\\[-\\pi^3 \\approx -31.006\\]" },
+          { prefix: "Step 2: Identify the largest number: \\(\\sqrt{37} \\approx 6.08\\). Enter largest number:", expected: "√37", suffix: ".", explanation: "\\[\\sqrt{37} \\approx 6.083\\]" }
+        ]
+      },
+      {
+        id: 10,
+        concept: "real",
+        source: "Practice 2, Q10",
+        title: "Decimal Representations to 4 Decimal Places",
+        prompt: "Use the numbers: \\(\\frac{198}{23}, -12.255, -\\pi^2, \\sqrt{145}, -\\sqrt{288}\\). Represent each real number as a decimal up to 4 decimal places.",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="25" y="35" font-size="9" fill="#0c4a6e">4-Decimal Evaluations</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Decimal for \\(\\frac{198}{23} \\approx\\)", expected: "8.6087", suffix: ".", explanation: "\\[198 / 23 \\approx 8.608695... \\implies 8.6087\\]" },
+          { prefix: "Step 2: Decimal for \\(-\\pi^2 \\approx\\)", expected: "-9.8696", suffix: ".", explanation: "\\[-\\pi^2 \\approx -(3.14159)^2 \\approx -9.8696\\]" },
+          { prefix: "Step 3: Decimal for \\(\\sqrt{145} \\approx\\)", expected: "12.0416", suffix: ".", explanation: "\\[\\sqrt{145} \\approx 12.04159... \\implies 12.0416\\]" },
+          { prefix: "Step 4: Decimal for \\(-\\sqrt{288} \\approx\\)", expected: "-16.9706", suffix: ".", explanation: "\\[-\\sqrt{288} \\approx -16.97056... \\implies -16.9706\\]" }
+        ]
+      },
+      {
+        id: 11,
+        concept: "order",
+        source: "Practice 2, Q11",
+        title: "Locate Numbers on Real Number Line",
+        prompt: "Locate \\(\\frac{198}{23}, -12.255, -\\pi^2, \\sqrt{145}, -\\sqrt{288}\\) on a real number line.",
+        svg: `<svg width="240" height="80" viewBox="0 0 200 60">
+          <line x1="10" y1="30" x2="190" y2="30" stroke="#0c4a6e" stroke-width="2"/>
+          <circle cx="25" cy="30" r="3" fill="#dc2626"/><text x="15" y="45" font-size="6">-√288</text>
+          <circle cx="55" cy="30" r="3" fill="#dc2626"/><text x="45" y="45" font-size="6">-12.255</text>
+          <circle cx="90" cy="30" r="3" fill="#b45309"/><text x="80" y="45" font-size="6">-π²</text>
+          <circle cx="140" cy="30" r="3" fill="#0284c7"/><text x="135" y="45" font-size="6">198/23</text>
+          <circle cx="175" cy="30" r="3" fill="#059669"/><text x="170" y="45" font-size="6">√145</text>
+        </svg>`,
+        steps: [
+          { prefix: "Step 1: Which value lies furthest to the left (smallest):", expected: "-√288", suffix: ".", explanation: "\\[-\\sqrt{288} \\approx -16.9706\\]" },
+          { prefix: "Step 2: Which value lies furthest to the right (largest):", expected: "√145", suffix: ".", explanation: "\\[\\sqrt{145} \\approx 12.0416\\]" }
+        ]
+      },
+      {
+        id: 12,
+        concept: "real",
+        source: "Practice 2, Q12",
+        title: "Classification Table: Numbers in Q12",
+        prompt: "Complete the classification table for \\(\\frac{198}{23}, -12.255, -\\pi^2, \\sqrt{145}, -\\sqrt{288}\\).",
+        table: renderTable(
+          ["Category", "Real Numbers"],
+          [
+            ["Rational Numbers", "\\(\\frac{198}{23}, -12.255\\)"],
+            ["Irrational Numbers", "\\(-\\pi^2, \\sqrt{145}, -\\sqrt{288}\\)"]
+          ]
+        ),
+        svg: `<svg width="220" height="80" viewBox="0 0 160 50"><text x="25" y="30" font-size="9" fill="#0c4a6e">Rational vs. Irrational</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Are \\(\\frac{198}{23}\\) and \\(-12.255\\) rational or irrational?", expected: "rational", suffix: ".", explanation: "Fraction of integers and terminating decimals are rational." },
+          { prefix: "Step 2: Are \\(-\\pi^2, \\sqrt{145}, -\\sqrt{288}\\) rational or irrational?", expected: "irrational", suffix: ".", explanation: "Pi constants and non-perfect square roots are irrational." }
+        ]
+      },
+      {
+        id: 13,
+        concept: "comp",
+        source: "Practice 2, Q13",
+        title: "Application: Object Travelling at Radical Speed",
+        prompt: "An object travels at a speed of \\(\\sqrt{\\frac{64}{5}}\\text{ m/s}\\). (a) Find speed to 2 decimal places. (b) If speed changes to \\(4\\text{ m/s}\\), is it travelling greater than or less than \\(\\sqrt{\\frac{64}{5}}\\text{ m/s}\\)?",
+        svg: `<svg width="220" height="90" viewBox="0 0 160 60"><text x="35" y="35" font-size="10" fill="#0c4a6e">√(64/5) ≈ 3.58 m/s vs 4 m/s</text></svg>`,
+        steps: [
+          { prefix: "Part a: Speed to 2 decimal places \\(\\sqrt{12.8} \\approx\\)", expected: "3.58", suffix: "m/s.", explanation: "\\[\\sqrt{12.8} \\approx 3.5777... \\implies 3.58\\text{ m/s}\\]" },
+          { prefix: "Part b: Since \\(4 = \\sqrt{16} > \\sqrt{12.8}\\), the new speed of 4 m/s is (greater than / less than) the original speed:", expected: "greater than", suffix: ".", explanation: "\\[4 = \\sqrt{16} > \\sqrt{12.8} \\approx 3.58\\text{ m/s}\\]" }
+        ]
+      }
+    ];
+
+    let currentStudentName = "Guest";
+    let currentQuestionIndex = 0;
+    let stepProgress = CHAPTER_QUESTIONS.map(() => ({ completedSteps: 0, status: "unseen" }));
+    let stepAttempts = {};
+    let audioMuted = false;
+    let totalSeconds = 0;
+    let timerInterval = null;
+    let activeInputRef = null;
+
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      },
+      playTone(freq, type, duration, delay = 0) {
+        if (audioMuted || !this.ctx) return;
+        setTimeout(() => {
+          try {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + duration);
+          } catch (e) {
+            console.warn("Audio error", e);
+          }
+        }, delay * 1000);
+      },
+      correct() {
+        this.init();
+        this.playTone(659.25, 'sine', 0.15, 0);
+        this.playTone(880.00, 'sine', 0.25, 0.12);
+      },
+      incorrect() {
+        this.init();
+        this.playTone(196.00, 'triangle', 0.2, 0);
+        this.playTone(146.83, 'triangle', 0.3, 0.12);
+      },
+      milestone() {
+        this.init();
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+          this.playTone(freq, 'sine', 0.25, idx * 0.1);
+        });
+      }
+    };
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        totalSeconds++;
+        const mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+        const secs = String(totalSeconds % 60).padStart(2, '0');
+        document.getElementById('timerChip').innerText = `⏱️ ${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMessage');
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3500);
+    }
+
+    function initDirectLogin() {
+      const name = document.getElementById('studentNameInput').value.trim() || 'Ankit Agrawal';
+      currentStudentName = name;
+      sessionStorage.setItem('bm_student', name);
+      document.getElementById('userPill').innerHTML = `<strong>Student: ${name}</strong>`;
+      document.getElementById('reportStudentBadge').innerHTML = `<strong>Student: ${name}</strong>`;
+      document.getElementById('loginGateView').style.display = 'none';
+      AudioEngine.init();
+      startTimer();
+      renderPalettes();
+      loadQuestion(0);
+      renderSolutions();
+    }
+
+    function normalizeInput(str) {
+      return str.toLowerCase().replace(/\s+/g, '').replace(/−/g, '-').replace(/pi/g, 'π');
+    }
+
+    function parseNumeric(val) {
+      if (val.includes('/')) {
+        const parts = val.split('/');
+        return parseFloat(parts[0]) / parseFloat(parts[1]);
+      }
+      return parseFloat(val);
+    }
+
+    function checkNumericalTolerance(val1, val2) {
+      const n1 = parseNumeric(val1);
+      const n2 = parseNumeric(val2);
+      if (isNaN(n1) || isNaN(n2)) return false;
+      return Math.abs(n1 - n2) <= 0.05;
+    }
+
+    function switchView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+
+      const btnMap = { 'theoryView': 0, 'sheetView': 1, 'solutionsView': 2 };
+      document.querySelectorAll('nav button')[btnMap[viewId]].classList.add('active');
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    function renderPalettes() {
+      const secAGrid = document.getElementById('paletteSecAGrid');
+      const secBGrid = document.getElementById('paletteSecBGrid');
+      secAGrid.innerHTML = '';
+      secBGrid.innerHTML = '';
+
+      let doneCount = 0;
+      CHAPTER_QUESTIONS.forEach((q, idx) => {
+        const state = stepProgress[idx];
+        if (state.status === "completed") doneCount++;
+
+        const btn = document.createElement('button');
+        let stateClass = '';
+        if (idx === currentQuestionIndex) {
+          stateClass = 'active';
+        } else if (state.status === "completed") {
+          stateClass = 'completed';
+        } else if (state.status === "skipped") {
+          stateClass = 'skipped';
+        }
+
+        btn.className = `palette-btn ${stateClass}`;
+        btn.innerText = idx + 1;
+        btn.title = `${q.source}: ${q.title}`;
+        btn.onclick = () => loadQuestion(idx);
+
+        if (idx < 7) {
+          secAGrid.appendChild(btn);
+        } else {
+          secBGrid.appendChild(btn);
+        }
+      });
+      document.getElementById('paletteCount').innerText = `${doneCount} / ${CHAPTER_QUESTIONS.length}`;
+    }
+
+    function loadQuestion(idx) {
+      currentQuestionIndex = idx;
+      renderPalettes();
+      const q = CHAPTER_QUESTIONS[idx];
+      const prog = stepProgress[idx];
+
+      let stepsHtml = '';
+      q.steps.forEach((st, sIdx) => {
+        const isUnlocked = sIdx <= prog.completedSteps;
+        const isPassed = sIdx < prog.completedSteps;
+        const key = `${idx}_${sIdx}`;
+        const attempts = stepAttempts[key] || 0;
+
+        stepsHtml += `
+          <div class="step-box ${isUnlocked ? 'unlocked' : ''} ${isPassed ? 'success' : ''}" id="stepBox_${idx}_${sIdx}">
+            <div class="step-text-wrap">
+              <span>${st.prefix}</span>
+              <input type="text" class="inline-blank" id="stepInput_${idx}_${sIdx}" 
+                value="${isPassed ? st.expected : ''}" 
+                placeholder="enter answer"
+                ${isPassed ? 'disabled' : ''} 
+                onfocus="activeInputRef = this;" />
+              <span>${st.suffix}</span>
+              ${!isPassed ? `
+                <button class="btn-verify" onclick="verifyStep(${idx}, ${sIdx})">Verify</button>
+                <span class="attempts-badge">Attempts: ${attempts}/2</span>
+                ${attempts >= 2 ? `<button class="btn-reveal" onclick="autoFillStep(${idx}, ${sIdx})">Auto-Fill Correct Answer</button>` : ''}
+              ` : `<span style="color: var(--green-ok); font-weight: bold; margin-left: 8px;">✓ Verified</span>`}
+            </div>
+            ${isPassed ? `<div style="margin-top:10px; padding:10px; background:#eff6ff; border-radius:6px; border-left:4px solid var(--brand-blue); font-size:0.92rem; color:var(--text-main);">${st.explanation}</div>` : ''}
+          </div>
+        `;
+      });
+
+      const tagClass = q.concept === 'comp' ? 'comp' : (q.concept === 'order' ? 'order' : 'real');
+      const tagText = q.concept === 'comp' ? 'Comparison of Reals' : (q.concept === 'order' ? 'Ordering Real Numbers' : 'Classification & Decimals');
+
+      const prevDisabled = idx === 0 ? 'disabled' : '';
+      const nextDisabled = idx === CHAPTER_QUESTIONS.length - 1 ? 'disabled' : '';
+
+      const html = `
+        <span class="concept-tag ${tagClass}">${tagText}</span>
+        <span style="font-size:0.85rem; font-weight:700; color:var(--text-muted); margin-left: 8px;">[${q.source}]</span>
+        <h2 style="color:var(--navy-dark); margin: 6px 0 10px 0;">Problem ${q.id}: ${q.title}</h2>
+        <p style="margin-top: 8px; line-height: 1.65;">${q.prompt}</p>
+        ${q.table ? q.table : ''}
+        <div class="svg-container">${q.svg}</div>
+        <div id="stepsContainer">${stepsHtml}</div>
+
+        <!-- Action Toolbar -->
+        <div class="nav-toolbar">
+          <button class="btn-nav-action" onclick="navigateQuestion(-1)" ${prevDisabled}>
+            ⏮ Previous
+          </button>
+          <div class="nav-btn-group">
+            <button class="btn-nav-action btn-skip" onclick="skipQuestion()">
+              ⏭ Skip Question
+            </button>
+            <button class="btn-nav-action" onclick="navigateQuestion(1)" ${nextDisabled}>
+              Next ❯
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('activeQuestionCard').innerHTML = html;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    function navigateQuestion(delta) {
+      const target = currentQuestionIndex + delta;
+      if (target >= 0 && target < CHAPTER_QUESTIONS.length) {
+        loadQuestion(target);
+      }
+    }
+
+    function skipQuestion() {
+      if (stepProgress[currentQuestionIndex].status !== "completed") {
+        stepProgress[currentQuestionIndex].status = "skipped";
+      }
+      showToast(`Question ${currentQuestionIndex + 1} marked as Skipped (Amber/Gold).`);
+      renderPalettes();
+      navigateQuestion(1);
+    }
+
+    function autoFillStep(qIdx, sIdx) {
+      const inputEl = document.getElementById(`stepInput_${qIdx}_${sIdx}`);
+      if (inputEl) {
+        inputEl.value = CHAPTER_QUESTIONS[qIdx].steps[sIdx].expected;
+        verifyStep(qIdx, sIdx);
+      }
+    }
+
+    function verifyStep(qIdx, sIdx) {
+      const inputEl = document.getElementById(`stepInput_${qIdx}_${sIdx}`);
+      const val = normalizeInput(inputEl.value);
+      const expected = normalizeInput(CHAPTER_QUESTIONS[qIdx].steps[sIdx].expected);
+      const key = `${qIdx}_${sIdx}`;
+
+      const isCorrect = (val === expected) || checkNumericalTolerance(val, expected);
+
+      if (isCorrect) {
+        AudioEngine.correct();
+        stepProgress[qIdx].completedSteps++;
+        if (stepProgress[qIdx].completedSteps >= CHAPTER_QUESTIONS[qIdx].steps.length) {
+          stepProgress[qIdx].status = "completed";
+          AudioEngine.milestone();
+          showToast(`Problem ${qIdx + 1} Completed!`);
+        }
+        renderPalettes();
+        loadQuestion(qIdx);
+        renderSolutions();
+      } else {
+        AudioEngine.incorrect();
+        stepAttempts[key] = (stepAttempts[key] || 0) + 1;
+        inputEl.style.borderColor = "var(--red-fail)";
+        if (stepAttempts[key] >= 2) {
+          showToast(`2 attempts reached. Click 'Auto-Fill Correct Answer' to advance.`);
+        } else {
+          showToast("Incorrect answer. Please recheck your calculations!");
+        }
+        loadQuestion(qIdx);
+      }
+    }
+
+    function renderSolutions() {
+      const container = document.getElementById('completeSolutionsContainer');
+      let completedCount = stepProgress.filter(p => p.status === "completed").length;
+      document.getElementById('scoreValue').innerText = `${completedCount} / ${CHAPTER_QUESTIONS.length}`;
+      document.getElementById('reportStudentBadge').innerHTML = `<strong>Student: ${currentStudentName}</strong>`;
+
+      let html = '';
+      CHAPTER_QUESTIONS.forEach((q) => {
+        html += `
+          <div class="theory-card">
+            <span class="concept-tag ${q.concept}">${q.concept.toUpperCase()}</span>
+            <span style="font-size:0.8rem; font-weight:bold; color:var(--text-muted); margin-left:6px;">${q.source}</span>
+            <h3 style="margin-top:6px;">Problem ${q.id}: ${q.title}</h3>
+            <p>${q.prompt}</p>
+            ${q.table ? q.table : ''}
+            <div class="svg-container" style="max-width: 240px; margin: 12px 0;">${q.svg}</div>
+            <div class="proof-section">
+              ${q.steps.map((st, sIdx) => `
+                <div style="background:#f8fafc; border-left:4px solid var(--brand-blue); padding:10px 14px; margin-bottom:8px; border-radius:0 6px 6px 0;">
+                  <strong>Step ${sIdx + 1}:</strong> ${st.prefix} <strong>[ ${st.expected} ]</strong> ${st.suffix}<br/>
+                  <div style="margin-top:6px;">${st.explanation}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    function toggleTool(tool) {
+      if (tool === 'keypad') {
+        document.getElementById('toolKeypad').style.display = 'block';
+        document.getElementById('toolCalc').style.display = 'none';
+        document.getElementById('tabKeypadBtn').classList.add('active');
+        document.getElementById('tabCalcBtn').classList.remove('active');
+      } else {
+        document.getElementById('toolKeypad').style.display = 'none';
+        document.getElementById('toolCalc').style.display = 'block';
+        document.getElementById('tabCalcBtn').classList.add('active');
+        document.getElementById('tabKeypadBtn').classList.remove('active');
+      }
+    }
+
+    function insertSymbol(sym) {
+      if (activeInputRef) {
+        activeInputRef.value += sym;
+        activeInputRef.focus();
+      }
+    }
+
+    function pressCalc(val) { document.getElementById('calcDisplay').value += val; }
+    function calcClear() { document.getElementById('calcDisplay').value = ''; }
+    function calcEval() {
+      try {
+        document.getElementById('calcDisplay').value = eval(document.getElementById('calcDisplay').value);
+      } catch (e) {
+        document.getElementById('calcDisplay').value = 'Error';
+      }
+    }
+    function calcSqrt() {
+      try {
+        document.getElementById('calcDisplay').value = Math.sqrt(parseFloat(document.getElementById('calcDisplay').value));
+      } catch (e) {
+        document.getElementById('calcDisplay').value = 'Error';
+      }
+    }
+
+    document.getElementById('audioToggleBtn').onclick = () => {
+      audioMuted = !audioMuted;
+      document.getElementById('audioToggleBtn').innerText = audioMuted ? '🔇' : '🔊';
+    };
+  </script>
+</body>
+</html>
